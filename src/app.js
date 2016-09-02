@@ -1,9 +1,10 @@
 var Matter = require('matter-js')
-var Bootstrap = require('bootstrap')
 
 var circleSize = 1;
 var kisses = 0;
 var maxKisses = 0;
+var red = "#C44D58"
+var grey = "#C4C4C4"
 
 // module aliases
 var Engine = Matter.Engine,
@@ -13,7 +14,8 @@ var Engine = Matter.Engine,
     Constraint = Matter.Constraint,
     MouseConstraint = Matter.MouseConstraint,
     Events = Matter.Events,
-    Composite = Matter.Composite;
+    Composite = Matter.Composite,
+    Common = Matter.Common;
 
 // create an engine
 var engine = Engine.create();
@@ -22,27 +24,44 @@ engine.world.gravity.y = 0;
 
 // create a renderer
 var render = Render.create({
-    element: document.getElementById("canvasDiv"),
-    engine: engine
+  element: document.getElementById("canvasDiv"),
+  engine: engine,
+  options: {
+    wireframes: false,
+    background: "#fff"
+  }
 });
 
-// create two boxes and a ground
-var centerCircle = Bodies.circle(400, 300, 80, 80);
-
-centerCircle.isStatic = true;
+var centerCircle = Bodies.circle(400, 300, 80, {
+  render: {
+    lineWidth: 0.5,
+    fillStyle: red,
+    strokeStyle: Common.shadeColor(red, -20),
+  },
+  isStatic: true
+});
 
 var mouseConstraint = MouseConstraint.create(engine, {
   element: render.canvas
 });
 
 Events.on(mouseConstraint, "mousedown", function(event) {
-  var circle = Bodies.circle(event.mouse.absolute.x, event.mouse.absolute.y, 80 * circleSize, 80 * circleSize);
+  var circle = Bodies.circle(event.mouse.absolute.x, event.mouse.absolute.y, 80 * circleSize, {
+    render: {
+      lineWidth: 0.5,
+      fillStyle: grey,
+      strokeStyle: Common.shadeColor(grey, -20),
+    }
+  });
   var constraint = Constraint.create({
     pointA: { x: 400, y: 300 },
     bodyB: circle,
     pointB: { x: 0, y:0 },
     length: 1,
-    stiffness: 0.01
+    stiffness: 0.01,
+    render: {
+      visible: false
+    }
   });
   World.add(engine.world, [circle, constraint]);
 });

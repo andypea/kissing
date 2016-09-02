@@ -1,0 +1,27 @@
+h1 {
+  font-family: sans-serif;
+  font-variant: small-caps;
+}
+
+li {
+  font-family: sans-serif;
+  list-style-type: none;
+}
+
+span {
+  font-weight: bold;
+}
+
+p {
+  color: #C44D58;
+  font-weight: bold;
+}
+
+input {
+  font-weight: bold;
+}
+
+body {
+  text-align: center;
+  background: #c4c4c4
+}
