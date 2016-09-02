@@ -1,0 +1,25 @@
+{
+  "name": "kissing",
+  "version": "1.0.0",
+  "description": "Kissing spheres",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andypea/kissing.git"
+  },
+  "author": "Andrew Punnett",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/andypea/kissing/issues"
+  },
+  "homepage": "https://github.com/andypea/kissing#readme",
+  "devDependencies": {
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "matter-js": "^0.10.0"
+  }
+}
